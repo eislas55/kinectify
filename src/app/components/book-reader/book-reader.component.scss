@@ -1,0 +1,124 @@
+.custom-color{
+  color: black;
+}
+.container {
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.sidenav-content{
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidenav{
+  padding: 20px;
+}
+.mat-drawer.sidenav{
+  max-width: 50%;
+}
+
+/* drag n drop */
+.box {
+    width: 200px;
+    height: 200px;
+    border: solid 1px #ccc;
+    color: rgba(0, 0, 0, 0.87);
+    cursor: move;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #fff;
+    border-radius: 4px;
+    position: relative;
+    z-index: 1;
+    transition: box-shadow 200ms cubic-bezier rgba(0, 0, 0.2, 1);
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2)
+        0 2px 2px 0 rgba(0, 0, 0, 0.14),
+        0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+.box:active{
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2)
+                0 8px 10px 1px rgba(0, 0, 0, 0.14),
+                0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+/* drag active */
+.cdk-drag-placeholder{
+  background-color: black !important;
+  color: lightgray;
+  border-radius: 8px;
+  padding: 0 10px;
+  z-index: 1;
+}
+
+/* drag created making invisible | UX */
+.cdk-drag-preview{
+  color: transparent;
+}
+
+/* view styles */
+.sidenav-content{
+  display: flex;
+  flex-flow: column;
+}
+.drop-list{
+  padding: 0 10px;
+  color: black;
+  max-width: 90%;
+  max-height: 90%;
+  overflow: auto;
+}
+.drop-list .list-item{
+  position: relative;
+  border-radius: 8px;
+  margin: 5px 0;
+  padding: 5px 10px;
+  background-color: lightgray;
+  transition: 0.2s ease all;
+}
+.search{
+  width: 400px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 15px 0;
+}
+ul li{
+  margin: 5px 0;
+  list-style-type: none !important;
+  border-bottom: 1px solid lightgray;
+}
+ul li:last-child{ border: none !important; }
+ul li strong{
+  display: inline-block;
+  margin-right: 5px;
+}
+ul a{
+  color: cornflowerblue;
+}
+.bookTitle{
+  font-size: 20px;
+  font-weight: 600;
+}
+.showmore{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 8px;
+  box-shadow: none;
+  outline: none;
+  margin: auto;
+}
+.selected{
+  background-color: black;
+  color: white;
+}
+.material-icons{
+  padding: 0 5px;
+}
