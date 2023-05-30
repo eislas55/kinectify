@@ -9,6 +9,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { bookReducer } from './store/my.reducer';
 
 @NgModule({
   declarations: [
@@ -22,7 +26,10 @@ import { FormsModule } from '@angular/forms';
     MatSidenavModule,
     DragDropModule,
     MatIconModule,
-    FormsModule
+    FormsModule,
+    StoreModule.forRoot({ bookState: bookReducer }),
+    EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument()
   ],
   providers: [],
   bootstrap: [AppComponent]

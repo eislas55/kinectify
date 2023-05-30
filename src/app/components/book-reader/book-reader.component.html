@@ -1,16 +1,16 @@
 <mat-drawer-container class="container" autosize>
     <mat-drawer #drawer class="sidenav" mode="side">
-        <p class="bookTitle">{{ itemShowed.title }}</p>
+        <p class="bookTitle">Name: {{ book.title }}</p>
         <ul *ngIf="showFiller">
-            <li><strong>Isbn:</strong> {{ itemShowed.isbn }}</li>
-            <li><strong>PageCount:</strong> {{ itemShowed.pageCount | number }}</li>
-            <li><strong>PublishedDate:</strong> {{ itemShowed.publishedDate.$date | date }}</li>
-            <li><strong>ThumbnailUrl:</strong> <a [href]="'http://' + itemShowed.thumbnailUrl" target="_blank" rel="">{{ itemShowed.thumbnailUrl }}</a></li>
-            <li><strong>ShortDescription:</strong> {{ itemShowed.shortDescription }}</li>
-            <li><strong>LongDescription:</strong> {{ itemShowed.longDescription }}</li>
-            <li><strong>Status:</strong> {{ itemShowed.status }}</li>
-            <li><strong>Authors:</strong> {{ itemShowed.authors }}</li>
-            <li><strong>Categories:</strong> {{ itemShowed.categories }}</li>
+            <img [src]="book.thumbnailUrl" alt="Book Thumbnail" />
+            <li><strong>Isbn:</strong> {{ book.isbn }}</li>
+            <li><strong>PageCount:</strong> {{ book.pageCount | number }}</li>
+            <li><strong>PublishedDate:</strong> {{ book.publishedDate.$date | date }}</li>
+            <li><strong>ShortDescription:</strong> {{ book.shortDescription }}</li>
+            <li><strong>LongDescription:</strong> {{ book.longDescription }}</li>
+            <li><strong>Status:</strong> {{ book.status }}</li>
+            <li><strong>Authors:</strong> {{ book.authors }}</li>
+            <li><strong>Categories:</strong> {{ book.categories }}</li>
         </ul>
 
       <button class="showmore" (click)="showFiller = !showFiller" mat-raised-button>

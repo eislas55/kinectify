@@ -1,8 +1,12 @@
 import { Component, OnInit, ViewChild, NgModule } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
-import { bookModel } from '../../models/book-response.model';
-const books = require('../../shared/amazon.books.json');
 import {CdkDragDrop, CdkDropList, CdkDrag, moveItemInArray} from '@angular/cdk/drag-drop';
+const books = require('../../shared/amazon.books.json');
+
+/* NGRX */
+import { Store } from '@ngrx/store';
+import { BookState } from 'src/app/store/my.reducer';
+import { setBookAction } from '../../store/my.actions';
 
 @Component({
   selector: 'book-reader',
@@ -11,14 +15,37 @@ import {CdkDragDrop, CdkDropList, CdkDrag, moveItemInArray} from '@angular/cdk/d
 })
 export class BookReaderComponent implements OnInit {
   @ViewChild('drawer') drawer!: MatDrawer;
+  
+  book: BookState = {
+    _id: 0,
+    title: '',
+    isbn: '',
+    pageCount: 0,
+    publishedDate: {
+      $date: ''
+    },
+    thumbnailUrl: '',
+    shortDescription: '',
+    longDescription: '',
+    status: '',
+    authors: [],
+    categories: []
+  };
 
-  constructor() { }
+  constructor(
+    private store: Store<{ bookState: BookState }>
+  ) {
+    this.store.select('bookState').subscribe((state) => {
+      this.book = state;
+    });
+  }
   
   showFiller = false;
-  data: bookModel[] = books;
-  filteredItems: bookModel[] = this.data;
+  data: BookState[] = books;
+  filteredItems: BookState[] = this.data;
   searchTerm: string = '';
   itemShowed: any = '';
+  
   
   ngOnInit(): void {
     console.log(this.data);
@@ -26,7 +53,8 @@ export class BookReaderComponent implements OnInit {
 
   toggleDrawer(item: any): void {
     if(!this.showFiller || this.itemShowed?.title == item.title) this.drawer.toggle();
-    this.itemShowed = item;
+    this.setBookData(item);
+    //this.itemShowed = item;
   }
   drop( event: CdkDragDrop<string[]> ): void {
     console.log(event);
@@ -37,5 +65,9 @@ export class BookReaderComponent implements OnInit {
     this.filteredItems = this.data.filter( item =>
       item.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
+  }
+
+  setBookData(item: BookState): void {
+    this.store.dispatch(setBookAction( item ));
   }
 }
