@@ -1,12 +1,11 @@
 import { Component, OnInit, ViewChild, NgModule } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import {CdkDragDrop, CdkDropList, CdkDrag, moveItemInArray} from '@angular/cdk/drag-drop';
-const books = require('../../shared/amazon.books.json');
-
 /* NGRX */
 import { Store } from '@ngrx/store';
 import { BookState } from 'src/app/store/my.reducer';
 import { setBookAction } from '../../store/my.actions';
+const books = require('../../shared/amazon.books.json');
 
 @Component({
   selector: 'book-reader',
@@ -44,20 +43,20 @@ export class BookReaderComponent implements OnInit {
   data: BookState[] = books;
   filteredItems: BookState[] = this.data;
   searchTerm: string = '';
-  itemShowed: any = '';
-  
   
   ngOnInit(): void {
-    console.log(this.data);
+    //console.log(this.data);
+    console.log("==============================================================");
+    console.log("Agregué a la funcionalidad que cuando se dé click sobre un elemento ya desplegado solamente se actualice la información, en lugar de cerrar de nuevo el menú lateral. Si se da click en el mismo elemento, entonces si se cierra.");
+    console.log("==============================================================");
   }
 
   toggleDrawer(item: any): void {
-    if(!this.showFiller || this.itemShowed?.title == item.title) this.drawer.toggle();
+    if(!this.showFiller || this.book?.title == item.title) this.drawer.toggle();
     this.setBookData(item);
-    //this.itemShowed = item;
   }
   drop( event: CdkDragDrop<string[]> ): void {
-    console.log(event);
+    //console.log(event);
     moveItemInArray(this.data, event.previousIndex, event.currentIndex);
   }
   
